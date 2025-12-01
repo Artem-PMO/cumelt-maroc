@@ -1,350 +1,501 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CUMELT MAROC - Литье Медных Слитков</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* СБРОС СТИЛЕЙ И БАЗА */
-        :root {
-            --primary-color: #222222; /* Глубокий темный цвет (из текста логотипа) */
-            --accent-color: #b85c38;  /* Медный цвет (из круга логотипа) */
-            --bg-color: #f8f4f0;      /* Светлый фон с теплым оттенком */
-            --text-color: #444;       /* Основной цвет текста */
-            --light-text: #fff;
-        }
-        body {
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-        }
-        
-        /* КОНТЕЙНЕРЫ */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* ШАПКА */
-        header {
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            padding: 1.2rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-weight: 700;
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-        .logo span {
-            color: var(--accent-color); /* Акцент на MAROC */
-        }
-
-        /* ГЛАВНЫЙ ЭКРАН (HERO) */
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 120px 0;
-            background: linear-gradient(135deg, #fff 60%, var(--bg-color) 40%);
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-text {
-            flex: 1;
-            padding-right: 60px;
-            z-index: 2;
-        }
-        .hero-text h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            line-height: 1.1;
-            font-weight: 700;
-        }
-        .hero-text p {
-            font-size: 1.3rem;
-            color: #666;
-            margin-bottom: 40px;
-        }
-        .hero-img {
-            flex: 1.2;
-            position: relative;
-        }
-        /* Эффект "раскаленного металла" для изображения */
-        .hero-img::after {
-            content: '';
-            position: absolute;
-            top: 10%;
-            right: -10%;
-            width: 80%;
-            height: 80%;
-            background: var(--accent-color);
-            opacity: 0.2;
-            filter: blur(60px);
-            z-index: -1;
-            border-radius: 50%;
-        }
-        .hero-img img {
-            width: 100%;
-            border-radius: 16px;
-            box-shadow: 0 25px 50px rgba(184, 92, 56, 0.25); /* Тень с медным оттенком */
-            transform: perspective(1000px) rotateY(-5deg);
-            transition: 0.5s;
-        }
-        .hero-img img:hover {
-             transform: perspective(1000px) rotateY(0deg);
-        }
-        .btn {
-            display: inline-block;
-            background: var(--accent-color);
-            color: var(--light-text);
-            padding: 14px 35px;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: 0.3s;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 5px 15px rgba(184, 92, 56, 0.4);
-        }
-        .btn:hover {
-            background: #a04a2a; /* Немного темнее при наведении */
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(184, 92, 56, 0.6);
-        }
-
-        /* О НАС */
-        .about {
-            padding: 100px 0;
-            text-align: center;
-            background: #fff;
-        }
-        .section-title {
-            font-size: 2.8rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--accent-color);
-            border-radius: 2px;
-        }
-        .about p {
-            max-width: 800px;
-            margin: 40px auto 60px;
-            font-size: 1.1rem;
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            text-align: left;
-        }
-        .feature-card {
-            background: var(--bg-color);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: 0.3s;
-            border-bottom: 4px solid transparent;
-        }
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
-        .feature-card h3 {
-            color: var(--primary-color);
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        .feature-card h3 span {
-            color: var(--accent-color);
-            margin-right: 10px;
-            font-size: 1.8rem;
-        }
-
-        /* КОНТАКТЫ */
-        .contacts {
-            background: linear-gradient(to right, var(--primary-color), #333);
-            color: var(--light-text);
-            padding: 100px 0;
-            position: relative;
-        }
-        .contacts::before {
-             content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, var(--accent-color), transparent);
-        }
-        .contacts h2 {
-            color: var(--light-text);
-        }
-        .contacts h2::after {
-            background: var(--accent-color);
-        }
-        .contacts-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-top: 50px;
-        }
-        .contact-info p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
-        }
-        .contact-item {
-            margin-bottom: 25px;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-        }
-        .contact-item span {
-            color: var(--accent-color);
-            margin-right: 15px;
-            font-size: 1.5rem;
-        }
-        
-        /* ПОДВАЛ */
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: #1a1a1a;
-            color: #888;
-            font-size: 0.9rem;
-        }
-
-        /* АДАПТИВНОСТЬ (МОБИЛЬНЫЕ) */
-        @media (max-width: 992px) {
-            .hero {
-                flex-direction: column-reverse;
-                text-align: center;
-                padding: 60px 0;
-            }
-            .hero-text {
-                padding-right: 0;
-                margin-top: 50px;
-            }
-            .hero-text h1 {
-                font-size: 2.8rem;
-            }
-            .hero-img img {
-                 transform: none;
-            }
-            .hero-img::after {
-                display: none;
-            }
-        }
-        @media (max-width: 768px) {
-            .contacts-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .section-title {
-                font-size: 2.2rem;
-            }
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+    <title>CUMELT MAROC — Copper Remelting & Ingot Casting</title>
+    <meta
+        name="description"
+        content="CUMELT MAROC — industrial copper remelting and ingot casting facility based in Tiflet, Morocco. Reliable partner for traders, manufacturers and international clients."
+    />
+    <!-- Modern industrial font pairing -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+    <!-- Copper stream: molten copper visual going through the whole page -->
+    <div class="copper-stream" aria-hidden="true"></div>
 
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">CUMELT <span>MAROC</span></a>
+    <header class="header">
+        <div class="container header__inner">
+            <a href="#hero" class="logo">
+                <div class="logo__mark">
+                    <!-- Logo image placeholder; replace assets/logo.png with real file -->
+                    <img
+                        src="assets/logo.png"
+                        alt="CUMELT MAROC"
+                        class="logo__img"
+                    />
+                </div>
+                <div class="logo__text">
+                    <span class="logo__title">CUMELT MAROC</span>
+                    <span class="logo__subtitle">Copper Remelting & Ingot Casting</span>
+                </div>
+            </a>
+
+            <nav class="nav">
+                <a href="#hero">Home</a>
+                <a href="#about">Company</a>
+                <a href="#process">Process</a>
+                <a href="#technology">Technology</a>
+                <a href="#quality">Quality</a>
+                <a href="#logistics">Logistics</a>
+                <a href="#contact">Contact</a>
             </nav>
+
+            <button
+                class="burger"
+                type="button"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container" style="display: flex; align-items: center; flex-wrap: wrap;">
-            <div class="hero-text">
-                <h1>Искусство Медного Литья</h1>
-                <p>Производство высококачественных медных слитков. Мы объединяем вековые традиции с современными технологиями для создания продукта исключительной чистоты.</p>
-                <a href="#contacts" class="btn">Связаться с нами</a>
-            </div>
-            <div class="hero-img">
-                <img src="https://images.unsplash.com/photo-1617791160144-153697771198?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Литье меди">
-            </div>
-        </div>
-    </section>
+    <main>
+        <!-- HERO -->
+        <section id="hero" class="hero" data-animate="fade-up">
+            <div class="container hero__inner">
+                <div class="hero__content">
+                    <p class="hero__eyebrow">Tiflet · Morocco · Industrial copper remelting</p>
+                    <h1>
+                        Industrial copper remelting
+                        <span class="hero__highlight">with ingots ready for global flows.</span>
+                    </h1>
+                    <p class="hero__lead">
+                        CUMELT MAROC operates a modern remelting facility in Tiflet, Morocco,
+                        delivering consistent high-grade copper ingots for international traders,
+                        wire and cable manufacturers, and industrial customers.
+                    </p>
+                    <div class="hero__actions">
+                        <a href="#contact" class="btn btn--primary">Talk to sales</a>
+                        <a href="#process" class="btn btn--ghost">Explore our process</a>
+                    </div>
+                    <dl class="hero__stats">
+                        <div class="stat">
+                            <dt>Annual capacity</dt>
+                            <dd>20 000+ t</dd>
+                        </div>
+                        <div class="stat">
+                            <dt>Purity levels</dt>
+                            <dd>up to 99.9%</dd>
+                        </div>
+                        <div class="stat">
+                            <dt>Main markets</dt>
+                            <dd>EMEA &amp; global</dd>
+                        </div>
+                    </dl>
+                </div>
 
-    <section class="about">
-        <div class="container">
-            <h2 class="section-title">О Компании</h2>
-            <p>CUMELT MAROC — это лидер в области переработки и литья меди. Наш опыт и стремление к совершенству позволяют нам поставлять продукцию, соответствующую самым строгим мировым стандартам качества.</p>
-            
-            <div class="features">
-                <div class="feature-card">
-                    <h3><span>⭐</span> Высочайшее Качество</h3>
-                    <p>Наши медные слитки отличаются исключительной чистотой и однородностью состава, что подтверждено сертификатами.</p>
-                </div>
-                <div class="feature-card">
-                    <h3><span>🔥</span> Передовые Технологии</h3>
-                    <p>Используем современное плавильное оборудование для точного контроля температуры и процесса литья.</p>
-                </div>
-                <div class="feature-card">
-                    <h3><span>🤝</span> Надежное Партнерство</h3>
-                    <p>Мы ценим долгосрочные отношения и гарантируем стабильность поставок для вашего бизнеса.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="contacts" id="contacts">
-        <div class="container">
-            <h2 class="section-title">Контакты</h2>
-            <div class="contacts-grid">
-                <div class="contact-info">
-                    <p>Свяжитесь с нами, чтобы обсудить сотрудничество или получить консультацию.</p>
-                    
-                    <div class="contact-item"><span>📍</span> Марокко, г. Касабланка, Индустриальная зона</div>
-                    <div class="contact-item"><span>📞</span> +212 (0) 522 00 00 00</div>
-                    <div class="contact-item"><span>✉️</span> info@cumeltmaroc.com</div>
-                </div>
-                <div class="map">
-                    <p style="font-size: 1.2rem; opacity: 0.8; padding-top: 20px;">Часы работы:<br>Пн-Пт: с 9:00 до 18:00</p>
+                <div class="hero__visual" data-animate="float">
+                    <div class="hero-card">
+                        <span class="hero-card__badge">24/7 monitoring</span>
+                        <h2>Copper, under control.</h2>
+                        <p>
+                            From scrap intake to finished ingots, every batch is tracked and
+                            digitally documented, ready for your compliance and audit needs.
+                        </p>
+                        <div class="hero-card__meta">
+                            <div>
+                                <span class="hero-card__label">Batch reports</span>
+                                <span class="hero-card__value">Digital / on demand</span>
+                            </div>
+                            <div>
+                                <span class="hero-card__label">Certificates</span>
+                                <span class="hero-card__value">ISO-ready setup</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer>
-        <div class="container">
-            &copy; 2024 CUMELT MAROC. Все права защищены.
+        <!-- ABOUT -->
+        <section id="about" class="section" data-animate="fade-up">
+            <div class="container">
+                <div class="section__header">
+                    <h2>About CUMELT MAROC</h2>
+                    <p>
+                        A focused copper remelting and ingot casting facility located in Tiflet,
+                        positioned between key Moroccan ports and industrial hubs.
+                    </p>
+                </div>
+                <div class="grid grid--2">
+                    <div class="section__text">
+                        <p>
+                            CUMELT MAROC was built to bridge reliable, industrial-scale copper
+                            remelting with the speed and flexibility required by modern traders and
+                            manufacturers. We source copper-bearing material from trusted partners
+                            and convert it into standardized ingots ready for downstream processing.
+                        </p>
+                        <p>
+                            Our team combines international industrial experience with local
+                            operational know-how, ensuring predictable quality, transparent
+                            documentation and efficient logistics through Moroccan ports.
+                        </p>
+                    </div>
+                    <div class="about__highlights">
+                        <div class="about-card">
+                            <span class="about-card__label">Strategic location</span>
+                            <p>
+                                Tiflet, Morocco — efficient access to Casablanca, Tangier and
+                                export routes into EMEA and beyond.
+                            </p>
+                        </div>
+                        <div class="about-card">
+                            <span class="about-card__label">Industrial focus</span>
+                            <p>
+                                Designed specifically for copper remelting and ingot casting,
+                                with flows optimized for repeatable batches.
+                            </p>
+                        </div>
+                        <div class="about-card">
+                            <span class="about-card__label">Partner mindset</span>
+                            <p>
+                                We work with traders, cable plants and industrial customers as
+                                long-term partners, not one-off buyers.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESS -->
+        <section id="process" class="section section--muted" data-animate="fade-up">
+            <div class="container">
+                <div class="section__header section__header--center">
+                    <h2>Controlled copper process</h2>
+                    <p>
+                        From incoming material to cast ingots — a clear, transparent flow designed
+                        for quality and traceability.
+                    </p>
+                </div>
+                <ol class="process">
+                    <li class="process-step">
+                        <div class="process-step__index">01</div>
+                        <div class="process-step__body">
+                            <h3>Intake &amp; sorting</h3>
+                            <p>
+                                Copper-bearing material is received, visually inspected and sorted by
+                                type and quality, with non-conforming fractions removed.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="process-step">
+                        <div class="process-step__index">02</div>
+                        <div class="process-step__body">
+                            <h3>Remelting</h3>
+                            <p>
+                                Sorted material is remelted in controlled furnaces. Temperature,
+                                slag removal and alloying are managed according to defined
+                                parameters.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="process-step">
+                        <div class="process-step__index">03</div>
+                        <div class="process-step__body">
+                            <h3>Refining &amp; sampling</h3>
+                            <p>
+                                Before casting, samples are taken for analysis. Parameters such as
+                                copper content and impurities are checked to meet agreed specs.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="process-step">
+                        <div class="process-step__index">04</div>
+                        <div class="process-step__body">
+                            <h3>Ingot casting &amp; marking</h3>
+                            <p>
+                                Molten copper is cast into standardized ingots. Each batch is marked
+                                and linked to laboratory and production records.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- TECHNOLOGY -->
+        <section id="technology" class="section" data-animate="fade-up">
+            <div class="container">
+                <div class="section__header">
+                    <h2>Modern equipment &amp; technology</h2>
+                    <p>
+                        Purpose-built lines and monitoring systems for repeatable remelting and
+                        casting performance.
+                    </p>
+                </div>
+                <div class="grid grid--3 cards">
+                    <article class="card">
+                        <h3>Remelting furnaces</h3>
+                        <p>
+                            High-efficiency furnaces dimensioned for industrial copper flows, with
+                            stable temperature control and optimized fuel usage.
+                        </p>
+                        <p class="card__meta">
+                            Designed for continuous operation and consistent bath conditions.
+                        </p>
+                    </article>
+                    <article class="card">
+                        <h3>Casting lines</h3>
+                        <p>
+                            Casting equipment configured for standardized ingot sizes, smooth
+                            filling and controlled cooling to reduce internal stresses.
+                        </p>
+                        <p class="card__meta">
+                            Ready to adapt to customer-specific ingot formats.
+                        </p>
+                    </article>
+                    <article class="card">
+                        <h3>Digital monitoring</h3>
+                        <p>
+                            Key process parameters are monitored and logged, enabling batch
+                            reporting, trending and traceability for critical customers.
+                        </p>
+                        <p class="card__meta">
+                            Supports ISO-aligned documentation practices.
+                        </p>
+                    </article>
+                    <article class="card">
+                        <h3>Material handling</h3>
+                        <p>
+                            Dedicated areas for intake, storage and handling of scrap and semi-finished
+                            material, with clear separation of flows.
+                        </p>
+                    </article>
+                    <article class="card">
+                        <h3>Laboratory support</h3>
+                        <p>
+                            Integration with analytical labs for copper content, impurities and
+                            mechanical checks, aligned with contract specifications.
+                        </p>
+                    </article>
+                    <article class="card">
+                        <h3>Safety &amp; environment</h3>
+                        <p>
+                            Processes designed with operator safety, emissions and environmental
+                            impact in mind, aligned with future ISO plans.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUALITY -->
+        <section id="quality" class="section section--muted" data-animate="fade-up">
+            <div class="container">
+                <div class="section__header">
+                    <h2>Quality &amp; certification</h2>
+                    <p>
+                        Built with ISO-ready routines and documentation, so your copper flows are
+                        auditable from day one.
+                    </p>
+                </div>
+                <div class="grid grid--2 quality">
+                    <div class="quality__text">
+                        <p>
+                            CUMELT MAROC structures its processes to align with ISO 9001 quality
+                            management principles and typical customer requirements for metallurgical
+                            supply chains. Intake, remelting, casting and storage each follow defined
+                            routines with records available for review.
+                        </p>
+                        <ul class="quality__list">
+                            <li>Defined process flows with responsibilities and checkpoints.</li>
+                            <li>Batch-based records linking intake, process data and output.</li>
+                            <li>Sampling and analysis integrated into production decisions.</li>
+                            <li>Clear handling of non-conforming material and rework.</li>
+                        </ul>
+                    </div>
+                    <div class="quality__cards">
+                        <div class="quality-card">
+                            <span class="quality-card__tag">ISO alignment</span>
+                            <h3>ISO 9001 ready</h3>
+                            <p>
+                                Processes and documentation prepared for certification with
+                                recognized bodies once production volumes scale.
+                            </p>
+                        </div>
+                        <div class="quality-card">
+                            <span class="quality-card__tag">Documentation</span>
+                            <h3>Traceable batches</h3>
+                            <p>
+                                Each batch can be linked to intake records, process parameters and
+                                laboratory data on request.
+                            </p>
+                        </div>
+                        <div class="quality-card">
+                            <span class="quality-card__tag">Compliance</span>
+                            <h3>Audit support</h3>
+                            <p>
+                                Designed to support supplier qualification, on-site audits and
+                                documentation for key accounts.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOGISTICS -->
+        <section id="logistics" class="section" data-animate="fade-up">
+            <div class="container">
+                <div class="section__header section__header--center">
+                    <h2>Logistics &amp; international supply</h2>
+                    <p>
+                        Positioned for efficient flows from Morocco into regional and global
+                        copper value chains.
+                    </p>
+                </div>
+                <div class="grid grid--3 cards">
+                    <article class="card">
+                        <h3>Strategic location</h3>
+                        <p>
+                            Tiflet location allows efficient routing to key Moroccan ports, helping
+                            align production schedules with vessel departures.
+                        </p>
+                    </article>
+                    <article class="card">
+                        <h3>For traders &amp; OEMs</h3>
+                        <p>
+                            Designed to serve both traders consolidating volumes and industrial
+                            clients feeding cable, wire and component plants.
+                        </p>
+                    </article>
+                    <article class="card">
+                        <h3>Flexible shipping</h3>
+                        <p>
+                            Shipments can be prepared for containers, trucks or mixed solutions,
+                            depending on destination and contract.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="section section--muted" data-animate="fade-up">
+            <div class="container">
+                <div class="section__header">
+                    <h2>Contact &amp; enquiries</h2>
+                    <p>
+                        Share your copper needs, and our team will come back with options on
+                        volumes, specifications and logistics.
+                    </p>
+                </div>
+                <div class="grid grid--2 contact">
+                    <div class="contact__info">
+                        <h3>Facility &amp; office</h3>
+                        <p>
+                            CUMELT MAROC<br />
+                            Tiflet, Morocco
+                        </p>
+                        <p>
+                            Email: <a href="mailto:info@cumelt-maroc.com">info@cumelt-maroc.com</a><br />
+                            Phone: <a href="tel:+212000000000">+212 00 00 00 00</a>
+                        </p>
+                        <p class="contact__note">
+                            Detailed address, directions and port routing can be provided upon
+                            request for confirmed partners.
+                        </p>
+                    </div>
+                    <form class="contact__form" autocomplete="off">
+                        <div class="field">
+                            <label for="name">Name</label>
+                            <input
+                                id="name"
+                                name="name"
+                                type="text"
+                                placeholder="Your full name"
+                                required
+                            />
+                        </div>
+                        <div class="field">
+                            <label for="company">Company</label>
+                            <input
+                                id="company"
+                                name="company"
+                                type="text"
+                                placeholder="Company or role"
+                            />
+                        </div>
+                        <div class="field">
+                            <label for="email">Email</label>
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                placeholder="name@company.com"
+                                required
+                            />
+                        </div>
+                        <div class="field field--inline">
+                            <div>
+                                <label for="volume">Indicative volumes</label>
+                                <input
+                                    id="volume"
+                                    name="volume"
+                                    type="text"
+                                    placeholder="e.g. 500 t/month"
+                                />
+                            </div>
+                            <div>
+                                <label for="market">Market</label>
+                                <input
+                                    id="market"
+                                    name="market"
+                                    type="text"
+                                    placeholder="Region / application"
+                                />
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="message">Request</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="4"
+                                placeholder="Briefly describe your copper requirements and timeline"
+                                required
+                            ></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary">
+                            Submit enquiry
+                        </button>
+                        <p class="contact__disclaimer">
+                            This form is a demo placeholder. Integration with email or CRM can be
+                            added according to your infrastructure.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__inner">
+            <span>© <span id="year"></span> CUMELT MAROC. All rights reserved.</span>
+            <span class="footer__note">Industrial copper remelting · Tiflet, Morocco.</span>
         </div>
     </footer>
 
+    <script src="main.js" defer></script>
 </body>
 </html>
